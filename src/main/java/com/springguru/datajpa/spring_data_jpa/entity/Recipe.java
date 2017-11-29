@@ -23,7 +23,7 @@ public class Recipe {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String description;
 	private Integer prepTime;
 	private Integer cookTime;
@@ -49,10 +49,10 @@ public class Recipe {
 	inverseJoinColumns=@JoinColumn(name="category_id"))
 	private Set<Category> categories;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getDescription() {
