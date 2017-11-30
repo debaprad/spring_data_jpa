@@ -25,6 +25,10 @@ public class UnitOfMesure {
 	public void setUnitOfMesure(String unitOfMesure) {
 		this.description = unitOfMesure;
 	}
+	@Override
+	public String toString() {
+		return "UnitOfMesure [id=" + id + ", description=" + description + "]";
+	}
 	
 	
 }
