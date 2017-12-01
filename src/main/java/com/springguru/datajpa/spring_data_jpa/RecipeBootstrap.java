@@ -25,8 +25,8 @@ import com.springguru.datajpa.spring_data_jpa.repository.UnitOfMessureRepository
 /**
  * Created by jt on 6/13/17.
  */
-@Controller
-public class RecipeBootstrap {
+@Component
+public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 
     private final CategoryRepository categoryRepository;
     private final RecipeRepository recipeRepository;
@@ -42,8 +42,10 @@ public class RecipeBootstrap {
 		this.UnitOfMesureRepository = UnitOfMesureRepository;
 	}
 
-    public void onApplicationEvent() {
-        recipeRepository.saveAll(getRecipes());
+    @Override
+	public void onApplicationEvent(ContextRefreshedEvent arg0) {
+    	 recipeRepository.saveAll(getRecipes());
+		
     }
 
     private List<Recipe> getRecipes() {
