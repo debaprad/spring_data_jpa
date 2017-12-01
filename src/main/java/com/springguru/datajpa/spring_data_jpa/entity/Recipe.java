@@ -1,5 +1,6 @@
 package com.springguru.datajpa.spring_data_jpa.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Generated;
@@ -30,6 +31,7 @@ public class Recipe {
 	private Integer servTime;
 	private String service;
 	private String url;
+	@Lob
 	private String directions;
 	
 	@Lob
@@ -42,12 +44,12 @@ public class Recipe {
 	private Notes notes;
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="recipe")
-	private Set<Ingredient> ingredient;
+	private Set<Ingredient> ingredients=new HashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name="recipe_category",joinColumns=@JoinColumn(name="recipe_id"),
 	inverseJoinColumns=@JoinColumn(name="category_id"))
-	private Set<Category> categories;
+	private Set<Category> categories=new HashSet<>();
 	
 	public Long getId() {
 		return id;
@@ -110,10 +112,10 @@ public class Recipe {
 		this.notes = notes;
 	}
 	public Set<Ingredient> getIngredient() {
-		return ingredient;
+		return ingredients;
 	}
 	public void setIngredient(Set<Ingredient> ingredient) {
-		this.ingredient = ingredient;
+		this.ingredients = ingredient;
 	}
 	public Difficulty getDifficulty() {
 		return difficulty;
