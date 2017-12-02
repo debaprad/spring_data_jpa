@@ -6,7 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class UnitOfMeasure {
   
 	@Id
@@ -14,23 +17,4 @@ public class UnitOfMeasure {
 	private Long id;
 	@Lob
 	private String description;
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getUnitOfMesure() {
-		return description;
-	}
-	public void setUnitOfMesure(String unitOfMesure) {
-		this.description = unitOfMesure;
-	}
-	@Override
-	public String toString() {
-		return "UnitOfMesure [id=" + id + ", description=" + description + "]";
-	}
-	
-	
 }

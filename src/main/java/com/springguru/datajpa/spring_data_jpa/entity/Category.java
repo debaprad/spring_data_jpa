@@ -10,7 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
+@Data
+@EqualsAndHashCode(exclude= {"recipes"})
 public class Category {
 
 	@Id
@@ -20,32 +25,6 @@ public class Category {
 	private String description;
 	@ManyToMany(mappedBy="categories")
 	private Set<Recipe> recipes=new HashSet<>();;
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public Set<Recipe> getRecipes() {
-		return recipes;
-	}
-	public void setRecipes(Set<Recipe> recipes) {
-		this.recipes = recipes;
-	}
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", description=" + description + ", recipes=" + recipes + "]";
-	}
-	
-	
-	
 	
 	
 }

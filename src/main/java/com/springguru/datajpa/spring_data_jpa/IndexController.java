@@ -1,32 +1,37 @@
 package com.springguru.datajpa.spring_data_jpa;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springguru.datajpa.spring_data_jpa.entity.Category;
+import com.springguru.datajpa.spring_data_jpa.entity.Recipe;
 import com.springguru.datajpa.spring_data_jpa.repository.CategoryRepository;
 import com.springguru.datajpa.spring_data_jpa.repository.UnitOfMessureRepository;
+import com.springguru.datajpa.spring_data_jpa.service.IRecipeService;
 
 @Controller
 public class IndexController {
 
 	private UnitOfMessureRepository unitOfMessureRepository;
 	private CategoryRepository categoryRepository;
+	private IRecipeService iRecipeService;
 	
-	
-	public IndexController(UnitOfMessureRepository unitOfMessureRepository, CategoryRepository categoryRepository) {
+	public IndexController(UnitOfMessureRepository unitOfMessureRepository, CategoryRepository categoryRepository,
+			IRecipeService iRecipeService) {
 		super();
 		this.unitOfMessureRepository = unitOfMessureRepository;
 		this.categoryRepository = categoryRepository;
+		this.iRecipeService = iRecipeService;
 	}
 
-
 	@RequestMapping({"","/","index"})
-	public String getIndexPage()
+	public String getIndexPage(Model model)
 	{
-		System.out.println(unitOfMessureRepository.findByDescription("Teaspoon").get());
-		System.out.println(categoryRepository.findByDescription("Americanss").
-				orElse(new Category()));
+		model.addAttribute("recipes",iRecipeService.getRecipes());
 		 return "index";
 	}
 	
