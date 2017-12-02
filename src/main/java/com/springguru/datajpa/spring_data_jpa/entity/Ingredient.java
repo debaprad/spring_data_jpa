@@ -7,54 +7,38 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity	
+@Data
+@EqualsAndHashCode(exclude= {"recipe"})
 public class Ingredient {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	private String description;
+	@Lob
+	private String direction;
 	private BigDecimal amount;
 	@ManyToOne
 	private Recipe recipe;
-	
 	@OneToOne(fetch=FetchType.EAGER)
-	private UnitOfMesure unitOfMesure;
+	private UnitOfMeasure unitOfMesure;
 	
-	public long getId() {
-		return id;
+	
+	public Ingredient() {
+		super();
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public BigDecimal getAmount() {
-		return amount;
-	}
-	public void setAmount(BigDecimal amount) {
+	public Ingredient(String direction, BigDecimal amount, UnitOfMeasure unitOfMesure) {
+		super();
+		this.direction = direction;
 		this.amount = amount;
-	}
-	public Recipe getRecipe() {
-		return recipe;
-	}
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
-	}
-	public UnitOfMesure getUnitOfMesure() {
-		return unitOfMesure;
-	}
-	public void setUnitOfMesure(UnitOfMesure unitOfMesure) {
 		this.unitOfMesure = unitOfMesure;
 	}
-	
-	
 	
 }
