@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(exclude= {"recipes"})
-public class Category {
+public  class Category {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
